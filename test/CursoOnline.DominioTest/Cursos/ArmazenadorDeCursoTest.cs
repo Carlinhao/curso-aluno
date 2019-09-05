@@ -1,3 +1,4 @@
+using Bogus;
 using Moq;
 using Xunit;
 
@@ -5,24 +6,31 @@ namespace CursoOnline.DominioTest.Cursos
 {
     public class ArmazenadorDeCursoTest
     {
+        private CursoDto _cursoDto;
+        private readonly ArmazenadorDeCurso _armazenadorDeCurso;
+        private readonly Mock<ICursoRepositorio> _cursoRepositorioMock;
+
+        public ArmazenadorDeCursoTest()
+        {
+            var faker = new Faker();
+            _cursoDto = new CursoDto()
+            {
+                Nome = faker.Random.Words(),
+                CargaHoraria = faker.Random.Double(50, 100),
+                PublicoAlvoId = 1,
+                ValorDoCurso = faker.Random.Double(100, 950)
+            };
+            
+            _cursoRepositorioMock = new Mock<ICursoRepositorio>();
+            
+            _armazenadorDeCurso = new ArmazenadorDeCurso(_cursoRepositorioMock.Object);
+        }
         [Fact]
         public void DeveAdicionarCurso()
         {
-            var cursoDto = new CursoDto()
-            {
-                Nome = "Curso A",
-                CargaHoraria = 80,
-                PublicoAlvoId = 1,
-                ValorDoCurso = 950.00
-            };
-
-            var cursoRepositorioMock = new Mock<ICursoRepositorio>();
-            
-            var armazenadorDeCurso = new ArmazenadorDeCurso(cursoRepositorioMock.Object);
-            
-            armazenadorDeCurso.Armazenar(cursoDto);
-            
-            cursoRepositorioMock.Verify(r => r.Adicionar(It.Is<Curso>(x => x.Nome == cursoDto.Nome)));
+            _armazenadorDeCurso.Armazenar(_cursoDto);
+            _cursoRepositorioMock.Verify(r => r.Adicionar(
+                It.Is<Curso>(x => x.Nome == _cursoDto.Nome)));
         }
     }
     
@@ -44,13 +52,14 @@ namespace CursoOnline.DominioTest.Cursos
             var curso = 
                 new Curso(cursoDto.Nome, cursoDto.CargaHoraria, PublicoAlvo.Estudantes, cursoDto.ValorDoCurso);
             _cursoRepositorio.Adicionar(curso);
+            _cursoRepositorio.Adicionar(curso);
         }
     }
     
     public class CursoDto
     {
         public string Nome { get; set; }
-        public int CargaHoraria { get; set; }
+        public double CargaHoraria { get; set; }
         public int PublicoAlvoId { get; set; }
         public double ValorDoCurso { get; set; }
     }
