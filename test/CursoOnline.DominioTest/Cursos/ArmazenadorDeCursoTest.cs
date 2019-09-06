@@ -2,6 +2,7 @@ using Bogus;
 using CursoOnline.DominioTest._Util;
 using Moq;
 using System;
+using CursoOnline.DominioTest._Builders;
 using Xunit;
 
 namespace CursoOnline.DominioTest.Cursos
@@ -19,7 +20,7 @@ namespace CursoOnline.DominioTest.Cursos
             {
                 Nome = faker.Random.Words(),
                 CargaHoraria = faker.Random.Double(50, 100),
-                PublicoAlvo = "Estudante",
+                PublicoAlvo = "Estudantes",
                 ValorDoCurso = faker.Random.Double(100, 950)
             };
             
@@ -27,6 +28,7 @@ namespace CursoOnline.DominioTest.Cursos
             
             _armazenadorDeCurso = new ArmazenadorDeCurso(_cursoRepositorioMock.Object);
         }
+        
         [Fact]
         public void DeveAdicionarCurso()
         {
@@ -38,43 +40,19 @@ namespace CursoOnline.DominioTest.Cursos
         [Fact]
         public void NaoDeveInformarPublicAlvoInvalido()
         {
-            _cursoDto.PublicoAlvo = "MÈdico";
-
+            _cursoDto.PublicoAlvo =  "Medico";
             Assert.Throws<ArgumentException>(() => _armazenadorDeCurso.Armazenar(_cursoDto))
-                                                    .ComMensagem("Publico Alvo inv·lido");
+                                                    .ComMensagem("Publico Alvo invalido");
         }
-    }
-    
-    public interface ICursoRepositorio
-    {
-        void Adicionar(Curso curso);
-    }
-    public class ArmazenadorDeCurso
-    {
-        private readonly ICursoRepositorio _cursoRepositorio;
 
-        public ArmazenadorDeCurso(ICursoRepositorio cursoRepositorio)
+        [Fact]
+        public void NaoDeveAdicionarCursoComMesmoNomeDeOutroJaSalvo()
         {
-            _cursoRepositorio = cursoRepositorio;
+            var cursoJaSalvo = CursoBuilder.Novo().ComNome(_cursoDto.Nome).Build();
+            _cursoRepositorioMock.Setup(x => x.ObterPeloNome(_cursoDto.Nome)).Returns(cursoJaSalvo);
+            
+            Assert.Throws<ArgumentException>(() => _armazenadorDeCurso.Armazenar(_cursoDto))
+                .ComMensagem("Nome do curso j√° consta no banco de dados.");
         }
-
-        public void Armazenar(CursoDto cursoDto)
-        {
-            Enum.TryParse(typeof(PublicoAlvo), cursoDto.PublicoAlvo, out var publicoAlvo);
-
-            if (publicoAlvo == null)
-                throw new ArgumentException("Publico Alvo inv·lido");
-            var curso = 
-                new Curso(cursoDto.Nome, cursoDto.CargaHoraria, (PublicoAlvo)publicoAlvo, cursoDto.ValorDoCurso);
-            _cursoRepositorio.Adicionar(curso);
-        }
-    }
-    
-    public class CursoDto
-    {
-        public string Nome { get; set; }
-        public double CargaHoraria { get; set; }
-        public string PublicoAlvo { get; set; }
-        public double ValorDoCurso { get; set; }
     }
 }
