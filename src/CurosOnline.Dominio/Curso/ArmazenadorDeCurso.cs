@@ -17,8 +17,6 @@ namespace CursoOnline.DominioTest.Cursos
             
             if(cursoJaSalvo != null)
                 throw new ArgumentException("Nome do curso já consta no banco de dados.");
-            
-            //Enum.TryParse<PublicoAlvo>(cursoDto.PublicoAlvo, out var publicoAlvo);
 
             if (!Enum.TryParse<PublicoAlvo>(cursoDto.PublicoAlvo, out var publicoAlvo))
                 throw new ArgumentException("Publico Alvo invalido");
