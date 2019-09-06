@@ -1,5 +1,7 @@
 using Bogus;
+using CursoOnline.DominioTest._Util;
 using Moq;
+using System;
 using Xunit;
 
 namespace CursoOnline.DominioTest.Cursos
@@ -17,7 +19,7 @@ namespace CursoOnline.DominioTest.Cursos
             {
                 Nome = faker.Random.Words(),
                 CargaHoraria = faker.Random.Double(50, 100),
-                PublicoAlvoId = 1,
+                PublicoAlvo = "Estudante",
                 ValorDoCurso = faker.Random.Double(100, 950)
             };
             
@@ -31,6 +33,15 @@ namespace CursoOnline.DominioTest.Cursos
             _armazenadorDeCurso.Armazenar(_cursoDto);
             _cursoRepositorioMock.Verify(r => r.Adicionar(
                 It.Is<Curso>(x => x.Nome == _cursoDto.Nome)));
+        }
+
+        [Fact]
+        public void NaoDeveInformarPublicAlvoInvalido()
+        {
+            _cursoDto.PublicoAlvo = "Médico";
+
+            Assert.Throws<ArgumentException>(() => _armazenadorDeCurso.Armazenar(_cursoDto))
+                                                    .ComMensagem("Publico Alvo inválido");
         }
     }
     
@@ -49,9 +60,12 @@ namespace CursoOnline.DominioTest.Cursos
 
         public void Armazenar(CursoDto cursoDto)
         {
+            Enum.TryParse(typeof(PublicoAlvo), cursoDto.PublicoAlvo, out var publicoAlvo);
+
+            if (publicoAlvo == null)
+                throw new ArgumentException("Publico Alvo inválido");
             var curso = 
-                new Curso(cursoDto.Nome, cursoDto.CargaHoraria, PublicoAlvo.Estudantes, cursoDto.ValorDoCurso);
-            _cursoRepositorio.Adicionar(curso);
+                new Curso(cursoDto.Nome, cursoDto.CargaHoraria, (PublicoAlvo)publicoAlvo, cursoDto.ValorDoCurso);
             _cursoRepositorio.Adicionar(curso);
         }
     }
@@ -60,7 +74,7 @@ namespace CursoOnline.DominioTest.Cursos
     {
         public string Nome { get; set; }
         public double CargaHoraria { get; set; }
-        public int PublicoAlvoId { get; set; }
+        public string PublicoAlvo { get; set; }
         public double ValorDoCurso { get; set; }
     }
 }
