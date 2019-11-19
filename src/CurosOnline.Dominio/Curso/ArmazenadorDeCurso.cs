@@ -14,16 +14,16 @@ namespace CursoOnline.DominioTest.Cursos
         public void Armazenar(CursoDto cursoDto)
         {
             var cursoJaSalvo = _cursoRepositorio.ObterPeloNome(cursoDto.Nome);
-            
-            if(cursoJaSalvo != null)
+
+            if (cursoJaSalvo != null)
                 throw new ArgumentException("Nome do curso já consta no banco de dados.");
 
             if (!Enum.TryParse<PublicoAlvo>(cursoDto.PublicoAlvo, out var publicoAlvo))
                 throw new ArgumentException("Publico Alvo invalido");
-            
-            var curso = 
-                new Curso(cursoDto.Nome, cursoDto.CargaHoraria, (PublicoAlvo)publicoAlvo, cursoDto.ValorDoCurso);
-            
+
+            var curso =
+                new Curso(cursoDto.Nome, cursoDto.CargaHoraria, publicoAlvo, cursoDto.Valor);
+
             _cursoRepositorio.Adicionar(curso);
         }
     }
