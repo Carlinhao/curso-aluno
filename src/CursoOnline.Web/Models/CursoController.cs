@@ -1,7 +1,7 @@
-﻿using CursoOnline.DominioTest.Cursos;
+﻿using CursoOnline.Cursos;
+using CursoOnline.Web.Util;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using CursoOnline.Web.Util;
 
 namespace CursoOnline.Web.Models
 {

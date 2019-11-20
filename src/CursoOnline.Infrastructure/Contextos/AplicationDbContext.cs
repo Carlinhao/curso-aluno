@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using CursoOnline.DominioTest.Cursos;
+﻿using CursoOnline.Cursos;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace CursoOnline.Infrastructure.Contextos
 {
