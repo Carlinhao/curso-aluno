@@ -1,7 +1,7 @@
 using CursoOnline.Cursos;
 using System;
 
-namespace CursoOnline.DominioTest.Cursos
+namespace CursoOnline.Dominio.Cursos
 {
     public class ArmazenadorDeCurso
     {

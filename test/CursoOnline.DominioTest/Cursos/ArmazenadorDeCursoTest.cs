@@ -1,7 +1,8 @@
 using System;
 using Bogus;
 using CursoOnline.Cursos;
-using CursoOnline.DominioTest._Builders;
+using CursoOnline.Dominio._Builders;
+using CursoOnline.Dominio.Cursos;
 using CursoOnline.DominioTest._Util;
 using Moq;
 using Xunit;

@@ -1,6 +1,6 @@
 using CursoOnline.Cursos;
 
-namespace CursoOnline.DominioTest._Builders
+namespace CursoOnline.Dominio._Builders
 {
     public class CursoBuilder
     {
