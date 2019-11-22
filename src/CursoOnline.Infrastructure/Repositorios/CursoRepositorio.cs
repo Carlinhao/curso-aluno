@@ -6,7 +6,7 @@ namespace CursoOnline.Infrastructure.Repositorios
 {
     public class CursoRepositorio : RepositorioBase<Curso>, ICursoRepositorio
     {
-        public CursoRepositorio(AplicationDbContext context) 
+        public CursoRepositorio(ApplicationDbContext context) 
             : base(context)
         {
         }

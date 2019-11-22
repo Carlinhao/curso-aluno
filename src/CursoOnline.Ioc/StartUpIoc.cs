@@ -13,9 +13,10 @@ namespace CursoOnline.Ioc
     {
         public static void ConfigureServices(IServiceCollection service, IConfiguration configuration)
         {
-            service.AddDbContext<AplicationDbContext>(opt => opt.UseSqlServer(configuration["ConnectionString"]));
+            service.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(configuration["ConnectionString"]));
             service.AddScoped(typeof(IRepositorio<>), typeof(RepositorioBase<>));
             service.AddScoped(typeof(ICursoRepositorio), typeof(CursoRepositorio));
+            service.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
             service.AddScoped<ArmazenadorDeCurso>();
         }
     }

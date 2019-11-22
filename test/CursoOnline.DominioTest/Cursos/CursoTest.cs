@@ -21,6 +21,7 @@ namespace CursoOnline.DominioTest.Cursos
             _cargaHoraria = fake.Random.Double(50, 100);
             _publicoAlvo = PublicoAlvo.Estudantes;
             _valorDoCurso = fake.Random.Double(150, 1000);
+            _descricao = fake.Lorem.Paragraph();
         }
 
         public void Dispose()
@@ -33,6 +34,7 @@ namespace CursoOnline.DominioTest.Cursos
         private readonly double _cargaHoraria;
         private readonly PublicoAlvo _publicoAlvo;
         private readonly double _valorDoCurso;
+        private readonly string _descricao;
 
         [Theory(DisplayName = "Curso com nome invalido")]
         [InlineData("")]
@@ -81,12 +83,13 @@ namespace CursoOnline.DominioTest.Cursos
                 Nome = _nome,
                 CargaHoraria = _cargaHoraria,
                 PublicoAlvo = _publicoAlvo,
-                ValorDoCurso = _valorDoCurso
+                Valor = _valorDoCurso,      
+                Descricao = _descricao
             };
 
             //Act
             var curso = new Curso(cursoSelecionado.Nome, cursoSelecionado.CargaHoraria, cursoSelecionado.PublicoAlvo,
-                cursoSelecionado.ValorDoCurso);
+                cursoSelecionado.Valor, cursoSelecionado.Descricao);
 
             //Assert
             cursoSelecionado.ToExpectedObject().ShouldMatch(curso);

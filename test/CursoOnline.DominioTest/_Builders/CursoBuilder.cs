@@ -8,6 +8,7 @@ namespace CursoOnline.Dominio._Builders
         private string _nome = "Informática básica";
         private PublicoAlvo _publicoAlvo = PublicoAlvo.Estudantes;
         private double _valorDoCurso = 950;
+        private string _descricao = "Progração .NetCore";
 
         public static CursoBuilder Novo()
         {
@@ -40,7 +41,7 @@ namespace CursoOnline.Dominio._Builders
 
         public Curso Build()
         {
-            return new Curso(_nome, _cargaHoraria, _publicoAlvo, _valorDoCurso);
+            return new Curso(_nome, _cargaHoraria, _publicoAlvo, _valorDoCurso, _descricao);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace CursoOnline.Dominio.Cursos
                 throw new ArgumentException("Publico Alvo invalido");
 
             var curso =
-                new Curso(cursoDto.Nome, cursoDto.CargaHoraria, publicoAlvo, cursoDto.Valor);
+                new Curso(cursoDto.Nome, cursoDto.CargaHoraria, publicoAlvo, cursoDto.Valor, cursoDto.Descricao);
 
             _cursoRepositorio.Adicionar(curso);
         }

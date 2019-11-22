@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CurosOnline.Dominio._Base;
+using CursoOnline.Ioc;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -31,6 +33,7 @@ namespace CursoOnline.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            StartUpIoc.ConfigureServices(services, Configuration);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -38,6 +41,14 @@ namespace CursoOnline.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.Use(async (context, next) =>
+            {
+                await next.Invoke();
+
+                var unitOfWork = (IUnitOfWork)context.RequestServices.GetService(typeof(IUnitOfWork));
+                await unitOfWork.Commit();
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
