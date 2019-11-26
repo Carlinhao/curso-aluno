@@ -1,4 +1,5 @@
 using System;
+using CurosOnline.Dominio;
 using CurosOnline.Dominio._Base;
 
 namespace CursoOnline.Cursos
@@ -15,18 +16,43 @@ namespace CursoOnline.Cursos
 
         public Curso(string nome, double cargaHoraria, PublicoAlvo publicoAlvo, double valor, string descricao)
         {
-            if (string.IsNullOrEmpty(nome))
-                throw new ArgumentException("Nome inválido");
-            if (cargaHoraria < 1)
-                throw new ArgumentException("Carga horária menor que 1");
-            if (valor < 1)
-                throw new ArgumentException("Valor curso menor que 1");
+            ValidadorDeRegra.Novo()
+                .Quando(string.IsNullOrEmpty(nome), Resource.NomeInvalido)
+                .Quando(cargaHoraria < 1, Resource.CargaHorariaInvalida)
+                .Quando(valor < 1, Resource.ValorCursoInvalido)
+                .DispararExcecaoSeExistir();
 
             Nome = nome;
             CargaHoraria = cargaHoraria;
             PublicoAlvo = publicoAlvo;
             Valor = valor;
             Descricao = descricao;
+        }
+
+        public void AlterarNome(string nomeCurso)
+        {
+            ValidadorDeRegra.Novo()
+                .Quando(string.IsNullOrEmpty(nomeCurso), Resource.NomeInvalido)
+                .DispararExcecaoSeExistir();
+            Nome = nomeCurso;
+        }
+
+        public void AlterarCargaHoraria(double cargaHoraria)
+        {
+            ValidadorDeRegra.Novo()
+                .Quando(cargaHoraria < 1, Resource.CargaHorariaInvalida)
+                .DispararExcecaoSeExistir();
+
+            CargaHoraria = cargaHoraria;
+        }
+
+        public void AlterarValor(double valorCurso)
+        {
+            ValidadorDeRegra.Novo()
+                .Quando(valorCurso < 1, Resource.ValorCursoInvalido)
+                .DispararExcecaoSeExistir();
+
+            Valor = valorCurso;
         }
     }
 }

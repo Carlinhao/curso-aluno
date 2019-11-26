@@ -38,7 +38,24 @@ namespace CursoOnline.Web.Controllers
             }
             return View("Index", PaginatedList<CursoParaListagemDto>.Create(null, Request));
         }
-        
+
+        public IActionResult Editar(int id)
+        {
+            var curso = _cursoRepositorio.ObterPorId(id);
+            
+            var cursoDto = new CursoDto
+            {
+                Id = curso.Id,
+                CargaHoraria = curso.CargaHoraria,
+                Descricao = curso.Descricao,
+                Nome = curso.Nome,
+                PublicoAlvo = curso.PublicoAlvo.ToString(),
+                Valor = curso.Valor
+            };
+
+            return View("NovoOuEditar", cursoDto);
+        }
+
         public IActionResult Novo()
         {
             return View("NovoOuEditar", new CursoDto());
