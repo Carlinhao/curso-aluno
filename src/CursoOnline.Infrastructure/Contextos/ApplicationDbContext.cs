@@ -1,14 +1,14 @@
-﻿using System.Threading.Tasks;
-using CursoOnline.DominioTest.Cursos;
+﻿using CursoOnline.Cursos;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace CursoOnline.Infrastructure.Contextos
 {
-    public class AplicationDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
         public DbSet<Curso> Cursos { get; set; }
         
-        public AplicationDbContext(DbContextOptions<AplicationDbContext> options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             :base(options)
         {
         }

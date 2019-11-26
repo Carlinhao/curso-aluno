@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{163B0C6D-7AB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{72242C2A-4ECF-4D06-BC6E-D94C94DA190F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursoOnline.Ioc", "src\CursoOnline.Ioc\CursoOnline.Ioc.csproj", "{2D52EF37-BA32-475D-9700-E7290A77E633}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{43A4572D-89BF-4653-B971-CACD8B099B9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43A4572D-89BF-4653-B971-CACD8B099B9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43A4572D-89BF-4653-B971-CACD8B099B9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D52EF37-BA32-475D-9700-E7290A77E633}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D52EF37-BA32-475D-9700-E7290A77E633}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D52EF37-BA32-475D-9700-E7290A77E633}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D52EF37-BA32-475D-9700-E7290A77E633}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +52,7 @@ Global
 		{746BD21F-FFC0-45AC-B54B-50C6B8402129} = {163B0C6D-7ABE-4AF6-979C-EBCFDC8CA911}
 		{FED48C23-1914-498F-9FE2-E69FC52B53CE} = {163B0C6D-7ABE-4AF6-979C-EBCFDC8CA911}
 		{43A4572D-89BF-4653-B971-CACD8B099B9C} = {163B0C6D-7ABE-4AF6-979C-EBCFDC8CA911}
+		{2D52EF37-BA32-475D-9700-E7290A77E633} = {163B0C6D-7ABE-4AF6-979C-EBCFDC8CA911}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CCF1BD5F-04C9-435C-879C-12D8E24A1943}

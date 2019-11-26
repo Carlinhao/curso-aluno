@@ -1,27 +1,58 @@
 using System;
+using CurosOnline.Dominio;
+using CurosOnline.Dominio._Base;
 
-namespace CursoOnline.DominioTest.Cursos
+namespace CursoOnline.Cursos
 {
-    public class Curso
+    public class Curso : Entidade
     {
-        public Curso(string nome, double cargaHoraria, PublicoAlvo publicoAlvo, double valorDoCurso)
+        public string Nome { get; private set; }
+        public string Descricao { get; private set; }
+        public double CargaHoraria { get; private set; }
+        public PublicoAlvo PublicoAlvo { get; private set; }
+        public double Valor { get; private set; }
+
+        private Curso() { }
+
+        public Curso(string nome, double cargaHoraria, PublicoAlvo publicoAlvo, double valor, string descricao)
         {
-            if (string.IsNullOrEmpty(nome))
-                throw new ArgumentException("Nome inválido");
-            if (cargaHoraria < 1)
-                throw new ArgumentException("Carga horária menor que 1");
-            if (valorDoCurso < 1)
-                throw new ArgumentException("Valor curso menor que 1");
+            ValidadorDeRegra.Novo()
+                .Quando(string.IsNullOrEmpty(nome), Resource.NomeInvalido)
+                .Quando(cargaHoraria < 1, Resource.CargaHorariaInvalida)
+                .Quando(valor < 1, Resource.ValorCursoInvalido)
+                .DispararExcecaoSeExistir();
 
             Nome = nome;
             CargaHoraria = cargaHoraria;
             PublicoAlvo = publicoAlvo;
-            ValorDoCurso = valorDoCurso;
+            Valor = valor;
+            Descricao = descricao;
         }
 
-        public string Nome { get; }
-        public double CargaHoraria { get; }
-        public PublicoAlvo PublicoAlvo { get; }
-        public double ValorDoCurso { get; }
+        public void AlterarNome(string nomeCurso)
+        {
+            ValidadorDeRegra.Novo()
+                .Quando(string.IsNullOrEmpty(nomeCurso), Resource.NomeInvalido)
+                .DispararExcecaoSeExistir();
+            Nome = nomeCurso;
+        }
+
+        public void AlterarCargaHoraria(double cargaHoraria)
+        {
+            ValidadorDeRegra.Novo()
+                .Quando(cargaHoraria < 1, Resource.CargaHorariaInvalida)
+                .DispararExcecaoSeExistir();
+
+            CargaHoraria = cargaHoraria;
+        }
+
+        public void AlterarValor(double valorCurso)
+        {
+            ValidadorDeRegra.Novo()
+                .Quando(valorCurso < 1, Resource.ValorCursoInvalido)
+                .DispararExcecaoSeExistir();
+
+            Valor = valorCurso;
+        }
     }
 }

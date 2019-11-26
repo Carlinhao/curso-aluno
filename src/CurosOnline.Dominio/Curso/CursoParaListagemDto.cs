@@ -1,4 +1,4 @@
-﻿namespace CursoOnline.DominioTest.Cursos
+﻿namespace CursoOnline.Cursos
 {
     public class CursoParaListagemDto
     {

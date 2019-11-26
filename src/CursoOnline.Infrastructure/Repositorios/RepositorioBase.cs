@@ -7,9 +7,9 @@ namespace CursoOnline.Infrastructure.Repositorios
 {
     public class RepositorioBase<TEntidade> : IRepositorio<TEntidade> where TEntidade : Entidade
     {
-        protected readonly AplicationDbContext Context;
+        protected readonly ApplicationDbContext Context;
 
-        public RepositorioBase(AplicationDbContext context)
+        public RepositorioBase(ApplicationDbContext context)
         {
             Context = context;
         }

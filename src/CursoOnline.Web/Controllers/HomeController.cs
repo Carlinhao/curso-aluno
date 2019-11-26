@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using CursoOnline.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using CursoOnline.Web.Models;
+using System.Diagnostics;
 
 namespace CursoOnline.Web.Controllers
 {
@@ -23,7 +19,7 @@ namespace CursoOnline.Web.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel {RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier});
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

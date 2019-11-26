@@ -1,6 +1,9 @@
+using CurosOnline.Dominio;
+using CurosOnline.Dominio._Base;
+using CursoOnline.Cursos;
 using System;
 
-namespace CursoOnline.DominioTest.Cursos
+namespace CursoOnline.Dominio.Cursos
 {
     public class ArmazenadorDeCurso
     {
@@ -15,16 +18,25 @@ namespace CursoOnline.DominioTest.Cursos
         {
             var cursoJaSalvo = _cursoRepositorio.ObterPeloNome(cursoDto.Nome);
 
-            if (cursoJaSalvo != null)
-                throw new ArgumentException("Nome do curso já consta no banco de dados.");
-
-            if (!Enum.TryParse<PublicoAlvo>(cursoDto.PublicoAlvo, out var publicoAlvo))
-                throw new ArgumentException("Publico Alvo invalido");
+            ValidadorDeRegra.Novo()
+                .Quando(cursoJaSalvo != null && cursoJaSalvo.Id != cursoDto.Id, Resource.CursoComMesmoNome)
+                .Quando(!Enum.TryParse<PublicoAlvo>(cursoDto.PublicoAlvo, out var publicoAlvo), Resource.PublicoAlvoInvalido)
+                .DispararExcecaoSeExistir();
 
             var curso =
-                new Curso(cursoDto.Nome, cursoDto.CargaHoraria, publicoAlvo, cursoDto.Valor);
+                new Curso(cursoDto.Nome, cursoDto.CargaHoraria, publicoAlvo, cursoDto.Valor, cursoDto.Descricao);
 
-            _cursoRepositorio.Adicionar(curso);
+
+            if(cursoDto.Id > 0)
+            {
+                curso = _cursoRepositorio.ObterPorId(cursoDto.Id);
+                curso.AlterarCargaHoraria(cursoDto.CargaHoraria);
+                curso.AlterarNome(cursoDto.Nome);
+                curso.AlterarValor(cursoDto.Valor);
+            }
+
+            if(cursoDto.Id == 0)
+                _cursoRepositorio.Adicionar(curso);
         }
     }
 }
