@@ -1,4 +1,3 @@
-using System;
 using Bogus;
 using CurosOnline.Dominio;
 using CursoOnline.Cursos;
@@ -6,7 +5,6 @@ using CursoOnline.Dominio._Builders;
 using CursoOnline.DominioTest._Util;
 using ExpectedObjects;
 using Xunit;
-using Xunit.Abstractions;
 
 namespace CursoOnline.DominioTest.Cursos
 {
@@ -18,7 +16,7 @@ namespace CursoOnline.DominioTest.Cursos
         private readonly double _valorDoCurso;
         private readonly string _descricao;
 
-        public CursoTest(ITestOutputHelper output)
+        public CursoTest()
         {
             var fake = new Faker();
 

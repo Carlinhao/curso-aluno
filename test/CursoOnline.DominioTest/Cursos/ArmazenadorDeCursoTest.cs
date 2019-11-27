@@ -54,7 +54,7 @@ namespace CursoOnline.DominioTest.Cursos
         {
             _cursoDto.PublicoAlvo = "Medico";
             Assert.Throws<ExcecaoDeDominio>(() => _armazenadorDeCurso.Armazenar(_cursoDto))
-                .ComMensagem("Publico Alvo invalido");
+                .ComMensagem("Publico Alvo inválido");
         }
 
         [Fact]
