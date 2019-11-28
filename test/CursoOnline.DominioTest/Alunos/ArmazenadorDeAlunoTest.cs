@@ -1,6 +1,7 @@
 ﻿using Bogus;
 using CurosOnline.Dominio.Alunos;
 using CursoOnline.Cursos;
+using CursoOnline.DominioTest._Builders;
 using CursoOnline.DominioTest._Util;
 using Moq;
 using Xunit;
@@ -43,7 +44,15 @@ namespace CursoOnline.DominioTest.Alunos
         {
             _alunoDto.Id = 35;
             _alunoDto.Nome = _faker.Person.FullName;
-           // _alunoDto.PublicoAlvo = 
+            var alunoJaSalvo = AlunoBuilder.Novo().Build();
+
+            _alunoRepositorioMock.Setup(x => x.ObterPorId(_alunoDto.Id)).Returns(alunoJaSalvo);
+            
+            _armazenadorDeAluno.ArmazenarALuno(_alunoDto);
+            
+            Assert.Equal(_alunoDto.Nome, alunoJaSalvo.Nome);
         }
+        
+        
     }
 }
