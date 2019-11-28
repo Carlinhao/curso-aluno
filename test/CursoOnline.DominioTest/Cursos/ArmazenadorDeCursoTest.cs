@@ -11,6 +11,11 @@ namespace CursoOnline.DominioTest.Cursos
 {
     public class ArmazenadorDeCursoTest
     {
+        private readonly CursoDto _cursoDto;
+        private readonly ArmazenadorDeCurso _armazenadorDeCurso;
+        private readonly Mock<ICursoRepositorio> _cursoRepositorioMock;
+
+
         public ArmazenadorDeCursoTest()
         {
             var faker = new Faker();
@@ -27,9 +32,6 @@ namespace CursoOnline.DominioTest.Cursos
             _armazenadorDeCurso = new ArmazenadorDeCurso(_cursoRepositorioMock.Object);
         }
 
-        private readonly CursoDto _cursoDto;
-        private readonly ArmazenadorDeCurso _armazenadorDeCurso;
-        private readonly Mock<ICursoRepositorio> _cursoRepositorioMock;
 
         [Fact]
         public void DeveAdicionarCurso()

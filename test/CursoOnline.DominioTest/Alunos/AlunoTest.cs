@@ -58,14 +58,14 @@ namespace CursoOnline.DominioTest.Alunos
             Assert.Throws<ExcecaoDeDominio>(() => AlunoBuilder
                                                   .Novo()
                                                   .ComCpf(cpf)
-                                                  .Build())                                                  
+                                                  .Build())
                                                   .ComMensagem(Resource.CpfInvalido);
         }
 
         [Theory]
         [InlineData(null)]
         [InlineData("")]
-        public void NaoDeveAlunoTerNomeInvalido(string nome)
+        public void NaoDeveAlunoTerNomeInvalidoTest(string nome)
         {
             Assert.Throws<ExcecaoDeDominio>(() => AlunoBuilder
                                                   .Novo()
@@ -77,13 +77,58 @@ namespace CursoOnline.DominioTest.Alunos
         [Theory]
         [InlineData(null)]
         [InlineData("")]
-        public void NaoDeveAlunoTerEmailInvalido(string email)
+        public void NaoDeveAlunoTerEmailInvalidoTest(string email)
         {
             Assert.Throws<ExcecaoDeDominio>(() => AlunoBuilder
                                                   .Novo()
                                                   .ComEmail(email)
                                                   .Build())
                                                   .ComMensagem(Resource.EmailInvalido);
+        }
+
+        [Fact]
+        public void DeveAlterarNomeAlunoTest()
+        {
+            var novoNome = _faker.Person.FullName;
+            var aluno = AlunoBuilder.Novo().Build();
+
+            aluno.AlterarNome(novoNome);
+
+            Assert.Equal(novoNome, aluno.Nome);
+        }
+
+        [Fact]
+        public void DeveAlterarEmailAlunoTest()
+        {
+            var email = _faker.Person.Email;
+            var aluno = AlunoBuilder.Novo().Build();
+
+            aluno.AlterarEmail(email);
+
+            Assert.Equal(email, aluno.Email);
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        public void NomeEditadoNaoDeveSerInvalidoTest(string nomeEdicao)
+        {
+            var nome = AlunoBuilder.Novo().Build();
+
+            Assert.Throws<ExcecaoDeDominio>(() => nome.AlterarNome(nomeEdicao))
+                                                      .ComMensagem(Resource.NomeInvalido);
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("test.com")]
+        public void EmailEditadoNaoDeveSerInvalidoTest(string emailEdicao)
+        {
+            var nome = AlunoBuilder.Novo().Build();
+
+            Assert.Throws<ExcecaoDeDominio>(() => nome.AlterarEmail(emailEdicao))
+                                                      .ComMensagem(Resource.EmailInvalido);
         }
     }
 }

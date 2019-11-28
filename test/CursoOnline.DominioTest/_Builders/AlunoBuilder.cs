@@ -1,5 +1,6 @@
 ﻿using CurosOnline.Dominio.Alunos;
 using CursoOnline.Cursos;
+using System;
 
 namespace CursoOnline.DominioTest._Builders
 {
@@ -48,7 +49,15 @@ namespace CursoOnline.DominioTest._Builders
 
         public Aluno Build()
         {
-            return new Aluno(_nome, _email, _cpf, _publicoAlvo);
+            var aluno = new Aluno(_nome, _email, _cpf, _publicoAlvo);
+
+            if(aluno.Id > 0)
+            {
+                var propertyInfo = aluno.GetType().GetProperty("Id");
+                propertyInfo.SetValue(aluno, Convert.ChangeType(_id, propertyInfo.PropertyType), null);
+            }
+
+            return aluno;
         }
     }
 }
