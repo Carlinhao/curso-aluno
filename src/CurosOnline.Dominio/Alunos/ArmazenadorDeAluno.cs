@@ -7,19 +7,19 @@ namespace CurosOnline.Dominio.Alunos
     public class ArmazenadorDeAluno
     {
         private readonly IAlunoRepositorio _alunoRepositorio;
+        private readonly IConversorDePublicoAlvo _conversorDePublicoAlvo;
 
-        public ArmazenadorDeAluno(IAlunoRepositorio alunoRepositorio)
+        public ArmazenadorDeAluno(IAlunoRepositorio alunoRepositorio, IConversorDePublicoAlvo conversorDePublicoAlvo)
         {
             _alunoRepositorio = alunoRepositorio;
+            _conversorDePublicoAlvo = conversorDePublicoAlvo;
         }
 
         public void ArmazenarALuno(AlunoDto alunoDto)
         {
             var alunoJaSalvo = _alunoRepositorio.ObterPorId(alunoDto.Id);
 
-            ValidadorDeRegra.Novo()
-                .Quando(!Enum.TryParse<PublicoAlvo>(alunoDto.PublicoAlvo, out var publicoAlvo), Resource.PublicoAlvoInvalido)
-                .DispararExcecaoSeExistir();
+            var publicoAlvo = _conversorDePublicoAlvo.Convert(alunoDto.PublicoAlvo);
 
             var aluno =  new Aluno(alunoDto.Nome, alunoDto.Email, alunoDto.Cpf, publicoAlvo);
 

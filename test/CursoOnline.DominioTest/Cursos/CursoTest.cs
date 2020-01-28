@@ -12,7 +12,7 @@ namespace CursoOnline.DominioTest.Cursos
     {
         private readonly string _nome;
         private readonly double _cargaHoraria;
-        private readonly PublicoAlvo _publicoAlvo;
+        private readonly CursoOnline.Cursos.PublicoAlvo _publicoAlvo;
         private readonly double _valorDoCurso;
         private readonly string _descricao;
 

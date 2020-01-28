@@ -14,6 +14,7 @@ namespace CursoOnline.DominioTest.Alunos
         private readonly AlunoDto _alunoDto;
         private readonly ArmazenadorDeAluno _armazenadorDeAluno;
         private readonly Mock<IAlunoRepositorio> _alunoRepositorioMock;
+        private readonly Mock<IConversorDePublicoAlvo> _conversorDePublicoAlvoMock;
 
         public ArmazenadorDeAlunoTest()
         {
@@ -27,8 +28,9 @@ namespace CursoOnline.DominioTest.Alunos
                 PublicoAlvo = PublicoAlvo.Universitario.ToString()
             };
             _alunoRepositorioMock = new Mock<IAlunoRepositorio>();
-
-            _armazenadorDeAluno = new ArmazenadorDeAluno(_alunoRepositorioMock.Object);
+            _conversorDePublicoAlvoMock = new Mock<IConversorDePublicoAlvo>(); 
+            
+            _armazenadorDeAluno = new ArmazenadorDeAluno(_alunoRepositorioMock.Object, _conversorDePublicoAlvoMock.Object);
         }
 
         [Fact]
@@ -52,7 +54,11 @@ namespace CursoOnline.DominioTest.Alunos
             
             Assert.Equal(_alunoDto.Nome, alunoJaSalvo.Nome);
         }
-        
-        
+
+        [Fact]
+        public void NadDeveEditarCpfAluno()
+        {
+            
+        }
     }
 }

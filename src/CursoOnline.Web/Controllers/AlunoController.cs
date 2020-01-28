@@ -33,6 +33,22 @@ namespace CursoOnline.Web.Controllers
             }
             return View("Index", PaginatedList<AlunoParaListagemDto>.Create(null, Request));
         }
+
+        public IActionResult Editar(int id)
+        {
+            var aluno = _alunoRepositorio.ObterPorId(id);
+
+            var alunoDto = new AlunoDto
+            {
+                Id = aluno.Id,
+                Cpf = aluno.Cpf,
+                Email = aluno.Email,
+                Nome = aluno.Email,
+                PublicoAlvo = aluno.PublicoAlvo.ToString()
+            };
+
+            return View("NovoOuEditar", alunoDto);
+        }
         
         [HttpPost]
         public IActionResult Salvar(AlunoDto model)

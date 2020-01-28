@@ -4,6 +4,6 @@ namespace CurosOnline.Dominio.Alunos
 {
     public interface IAlunoRepositorio : IRepositorio<Aluno>
     {
-        Aluno ObterPeloNome();
+        Aluno ObterPeloNome(string nome);
     }
 }
