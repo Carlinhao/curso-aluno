@@ -1,4 +1,3 @@
-using System;
 using CurosOnline.Dominio;
 using CurosOnline.Dominio._Base;
 
