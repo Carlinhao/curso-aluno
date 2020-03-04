@@ -11,6 +11,11 @@ namespace CursoOnline.DominioTest.Cursos
 {
     public class ArmazenadorDeCursoTest
     {
+        private readonly CursoDto _cursoDto;
+        private readonly ArmazenadorDeCurso _armazenadorDeCurso;
+        private readonly Mock<ICursoRepositorio> _cursoRepositorioMock;
+        private readonly Mock<IConversorDePublicoAlvo> _conversorDePublicoAlvoMock;
+
         public ArmazenadorDeCursoTest()
         {
             var faker = new Faker();
@@ -23,13 +28,10 @@ namespace CursoOnline.DominioTest.Cursos
             };
 
             _cursoRepositorioMock = new Mock<ICursoRepositorio>();
-
-            _armazenadorDeCurso = new ArmazenadorDeCurso(_cursoRepositorioMock.Object);
+            _conversorDePublicoAlvoMock = new Mock<IConversorDePublicoAlvo>(); 
+            
+            _armazenadorDeCurso = new ArmazenadorDeCurso(_cursoRepositorioMock.Object, _conversorDePublicoAlvoMock.Object);
         }
-
-        private readonly CursoDto _cursoDto;
-        private readonly ArmazenadorDeCurso _armazenadorDeCurso;
-        private readonly Mock<ICursoRepositorio> _cursoRepositorioMock;
 
         [Fact]
         public void DeveAdicionarCurso()
@@ -47,14 +49,6 @@ namespace CursoOnline.DominioTest.Cursos
 
             Assert.Throws<ExcecaoDeDominio>(() => _armazenadorDeCurso.Armazenar(_cursoDto))
                 .ComMensagem("Nome do curso já consta no banco de dados.");
-        }
-
-        [Fact]
-        public void NaoDeveInformarPublicAlvoInvalido()
-        {
-            _cursoDto.PublicoAlvo = "Medico";
-            Assert.Throws<ExcecaoDeDominio>(() => _armazenadorDeCurso.Armazenar(_cursoDto))
-                .ComMensagem("Publico Alvo invalido");
         }
 
         [Fact]
