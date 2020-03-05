@@ -1,23 +1,23 @@
 using CurosOnline.Dominio.Alunos;
+using CurosOnline.Dominio.Matriculas;
 using CursoOnline.Cursos;
 using CursoOnline.DominioTest._Builders;
-using CursoOnline.DominioTest.Matricula;
-using System;
 
 namespace CursoOnline.Dominio._Builders
 {
     public class MatriculaBuilder
     {
-        protected Aluno Aluno { get; set; }
-        protected Curso Curso { get; set; }
-        protected decimal ValorPago { get; set; }
+        protected Aluno Aluno;
+        protected Curso Curso;
+        protected decimal ValorPago;
 
         public static MatriculaBuilder Novo()
         {
+            var curso = CursoBuilder.Novo().ComPublicoAlvo(PublicoAlvo.Empreendedor).Build();
             return new MatriculaBuilder
             {
-                Aluno = AlunoBuilder.Novo().Build(),
-                Curso = CursoBuilder.Novo().Build(),
+                Aluno = AlunoBuilder.Novo().ComPublicoAlvo(PublicoAlvo.Empreendedor).Build(),
+                Curso = curso,
                 ValorPago = 1000M
             };
         }
