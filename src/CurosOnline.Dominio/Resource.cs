@@ -10,5 +10,8 @@
         public static string EmailInvalido = "Email inválido";
         public static string CpfInvalido = "Cpf inválido";
         public static string CpfVazioOuNulo = "Informe o cpf";
+        public static string AlunoInvalido = "Aluno inválido";
+        public static string CursoInvalido = "Curso inválido";
+        public static string ValorPagoInvalido = "Valor pago inválido";
     }
 }
