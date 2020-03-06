@@ -1,9 +1,10 @@
-﻿using CurosOnline.Dominio._Base;
+﻿using CurosOnline.Dominio;
+using CurosOnline.Dominio._Base;
 using CurosOnline.Dominio.Alunos;
 using CursoOnline.Cursos;
 using System;
 
-namespace CurosOnline.Dominio.Matriculas
+namespace CursoOnline.Dominio.Matriculas
 {
     public class Matricula
     {

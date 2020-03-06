@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard1.6</TargetFramework>
+        <AssemblyName>CursoOnline.Dominio</AssemblyName>
+        <RootNamespace>CursoOnline.Dominio</RootNamespace>
+        <PackageId>CursoOnline.Dominio</PackageId>
+        <Authors>CursoOnline.Dominio</Authors>
+        <Company>CursoOnline.Dominio</Company>
+        <Product>CursoOnline.Dominio</Product>
+    </PropertyGroup>
+
+</Project>

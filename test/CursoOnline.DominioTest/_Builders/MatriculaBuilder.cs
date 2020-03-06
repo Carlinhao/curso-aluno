@@ -1,5 +1,5 @@
 using CurosOnline.Dominio.Alunos;
-using CurosOnline.Dominio.Matriculas;
+using CursoOnline.Dominio.Matriculas;
 using CursoOnline.Cursos;
 using CursoOnline.DominioTest._Builders;
 

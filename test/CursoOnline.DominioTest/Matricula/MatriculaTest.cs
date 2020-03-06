@@ -6,7 +6,6 @@ using CursoOnline.DominioTest._Builders;
 using CursoOnline.DominioTest._Util;
 using ExpectedObjects;
 using System;
-using CurosOnline.Dominio.Matriculas;
 using Xunit;
 
 namespace CursoOnline.DominioTest.Matricula
@@ -27,7 +26,7 @@ namespace CursoOnline.DominioTest.Matricula
             };
 
             // Act
-            var matricula = new CurosOnline.Dominio.Matriculas.Matricula(matriculaEsperada.Aluno, matriculaEsperada.Curso, matriculaEsperada.ValorPago);
+            var matricula = new CursoOnline.Dominio.Matriculas.Matricula(matriculaEsperada.Aluno, matriculaEsperada.Curso, matriculaEsperada.ValorPago);
 
             // Assert
             matriculaEsperada.ToExpectedObject().ShouldMatch(matricula);

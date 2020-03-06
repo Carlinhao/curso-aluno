@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoOnline.DominioTest", "test\CursoOnline.DominioTest\CursoOnline.DominioTest.csproj", "{94A38A01-B7BC-4B14-9FA6-9D6FBD509BA6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CurosOnline.Dominio", "src\CurosOnline.Dominio\CurosOnline.Dominio.csproj", "{746BD21F-FFC0-45AC-B54B-50C6B8402129}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoOnline.Dominio", "src\CursoOnline.Dominio\CursoOnline.Dominio.csproj", "{746BD21F-FFC0-45AC-B54B-50C6B8402129}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoOnline.Infrastructure", "src\CursoOnline.Infrastructure\CursoOnline.Infrastructure.csproj", "{FED48C23-1914-498F-9FE2-E69FC52B53CE}"
 EndProject
@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{163B0C6D-7AB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{72242C2A-4ECF-4D06-BC6E-D94C94DA190F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CursoOnline.Ioc", "src\CursoOnline.Ioc\CursoOnline.Ioc.csproj", "{2D52EF37-BA32-475D-9700-E7290A77E633}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoOnline.Ioc", "src\CursoOnline.Ioc\CursoOnline.Ioc.csproj", "{2D52EF37-BA32-475D-9700-E7290A77E633}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
