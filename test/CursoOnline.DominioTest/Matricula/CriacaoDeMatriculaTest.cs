@@ -8,6 +8,7 @@ using CursoOnline.Dominio.Matriculas;
 using CursoOnline.DominioTest._Builders;
 using CursoOnline.DominioTest._Util;
 using Moq;
+using System;
 using Xunit;
 
 namespace CursoOnline.DominioTest.Matricula
@@ -32,10 +33,10 @@ namespace CursoOnline.DominioTest.Matricula
             _curso = CursoBuilder.Novo().ComId(45).ComPublicoAlvo(PublicoAlvo.Empreendedor).Build();
             _cursoRepositorio.Setup(x => x.ObterPorId(_curso.Id)).Returns(_curso);
 
-            _aluno = AlunoBuilder.Novo().ComId(23).ComPublicoAlvo(PublicoAlvo.Estudante).Build();
+            _aluno = AlunoBuilder.Novo().ComId(23).ComPublicoAlvo(PublicoAlvo.Empreendedor).Build();
             _alunoRepositorio.Setup(x => x.ObterPorId(_aluno.Id)).Returns(_aluno);
 
-            _matriculaDto = new MatriculaDto(_aluno.Id, _curso.Id);
+            _matriculaDto = new MatriculaDto(_aluno.Id, _curso.Id, Convert.ToDecimal(_curso.Valor));
         }
         
         [Fact(DisplayName = "Exibir mensagem quando curso não existir")]
@@ -75,32 +76,7 @@ namespace CursoOnline.DominioTest.Matricula
             // Arrange
             _criacaoDaMatricula.Criar(_matriculaDto);
 
-            _matriculaRepositorio.Verify(x => x.Adicionar(It.Is<CursoOnline.Dominio.Matriculas.Matricula>(m => m.Aluno == _aluno)));
-        }
-    }
-
-    public class CriacaoDaMatricula
-    {
-        private readonly IAlunoRepositorio _alunoRepositorio;
-        private readonly ICursoRepositorio _cursoRepositorio;
-        private readonly IMatriculaRepositorio _matriculaRepositorio;
-
-        public CriacaoDaMatricula(IAlunoRepositorio alunoRepositorio, ICursoRepositorio cursoRepositorio, IMatriculaRepositorio matriculaRepositorio)
-        {
-            _alunoRepositorio = alunoRepositorio;
-            _cursoRepositorio = cursoRepositorio;
-            _matriculaRepositorio = matriculaRepositorio;
-        }
-
-        public void Criar(MatriculaDto matriculaDto)
-        {
-            var curso = _cursoRepositorio.ObterPorId(matriculaDto.CursoId);
-            var aluno = _alunoRepositorio.ObterPorId(matriculaDto.AlunoId);
-
-            ValidadorDeRegra.Novo()
-                .Quando(curso == null, Resource.CursoNaoEncontrado)
-                .Quando(aluno == null, Resource.AlunoNaoEncontrado)
-                .DispararExcecaoSeExistir();
+            _matriculaRepositorio.Verify(x => x.Adicionar(It.Is<MatriculaDomain>(m => m.Aluno == _aluno && m.Curso == _curso)));
         }
     }
 }

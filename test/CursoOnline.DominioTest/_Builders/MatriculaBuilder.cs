@@ -2,6 +2,7 @@ using CurosOnline.Dominio.Alunos;
 using CursoOnline.Dominio.Matriculas;
 using CursoOnline.Cursos;
 using CursoOnline.DominioTest._Builders;
+using System;
 
 namespace CursoOnline.Dominio._Builders
 {
@@ -10,6 +11,7 @@ namespace CursoOnline.Dominio._Builders
         protected Aluno Aluno;
         protected Curso Curso;
         protected decimal ValorPago;
+        protected double NotaDoAluno;
 
         public static MatriculaBuilder Novo()
         {
@@ -18,7 +20,7 @@ namespace CursoOnline.Dominio._Builders
             {
                 Aluno = AlunoBuilder.Novo().ComPublicoAlvo(PublicoAlvo.Empreendedor).Build(),
                 Curso = curso,
-                ValorPago = 1000M
+                ValorPago = Convert.ToDecimal(curso.Valor)
             };
         }
 
@@ -40,10 +42,15 @@ namespace CursoOnline.Dominio._Builders
             return this;
         }
 
-        public Matricula Build()
+        public MatriculaBuilder ComNotaDoAluno(double notaDoAluno)
         {
-            var curso = new Matricula(Aluno, Curso, ValorPago);
-            return new Matricula(Aluno, Curso, ValorPago);
+            NotaDoAluno = notaDoAluno;
+            return this;
+        }
+
+        public MatriculaDomain Build()
+        {
+            return new MatriculaDomain(Aluno, Curso, ValorPago);
         }
     }
 }

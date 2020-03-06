@@ -17,5 +17,7 @@
         public static string PublicoAlvoDiferente = "O publico alvo do aluno e curso são diferentes.";
         public static string CursoNaoEncontrado = "O curso não foi encontrado.";
         public static string AlunoNaoEncontrado = "O aluno não foi encontrado.";
+        public static string NotadoAlunoEhInvalida = "A nota informada para o aluno é inválida";
+        public static string MatriculaNaoEncontrada = "Matricula não encontrada";
     }
 }

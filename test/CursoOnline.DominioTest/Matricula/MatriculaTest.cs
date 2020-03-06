@@ -26,7 +26,7 @@ namespace CursoOnline.DominioTest.Matricula
             };
 
             // Act
-            var matricula = new CursoOnline.Dominio.Matriculas.Matricula(matriculaEsperada.Aluno, matriculaEsperada.Curso, matriculaEsperada.ValorPago);
+            var matricula = new CursoOnline.Dominio.Matriculas.MatriculaDomain(matriculaEsperada.Aluno, matriculaEsperada.Curso, matriculaEsperada.ValorPago);
 
             // Assert
             matriculaEsperada.ToExpectedObject().ShouldMatch(matricula);
@@ -116,5 +116,49 @@ namespace CursoOnline.DominioTest.Matricula
             Assert.Throws<ExcecaoDeDominio>(() => MatriculaBuilder.Novo().ComAluno(aluno).ComCurso(curso).Build())
                 .ComMensagem(Resource.PublicoAlvoDiferente);
         }
+
+        [Fact(DisplayName = "Informando nota do aluno")]
+        [Trait("Category: ", "Matricula")]
+        public void DeveInformarNotaAluno()
+        {
+            // Arramge
+            var notaDoAlunoEsperada = 9.5;
+            var matricula = MatriculaBuilder.Novo().Build();
+
+            // Act
+            matricula.InformarNota(notaDoAlunoEsperada);
+
+            // Assert
+            Assert.Equal(notaDoAlunoEsperada, matricula.NotaDoAluno);
+        }
+
+        [Theory(DisplayName = "Validando nota Inválida")]
+        [Trait("Categoria: ", "Matricula")]
+        [InlineData(-1)]
+        [InlineData(11)]
+        public void NaoDeveSerInformadaUmaNotaInvalida(double notaInvalida)
+        {
+            // Arrange
+            var matricula = MatriculaBuilder.Novo().Build();
+
+            // Assert
+            Assert.Throws<ExcecaoDeDominio>(() => matricula.InformarNota(notaInvalida))
+                .ComMensagem(Resource.NotadoAlunoEhInvalida);
+        }
+
+        [Fact]
+        public void DeveIndicarQueCursoFoiConcluido()
+        {
+            // Arramge
+            var notaDoAlunoEsperada = 9.5;
+            var matricula = MatriculaBuilder.Novo().Build();
+
+            // Act
+            matricula.InformarNota(notaDoAlunoEsperada);
+
+            // Assert
+            Assert.True(matricula.CursoConcluido);
+        }
+
     }
 }

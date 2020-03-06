@@ -6,14 +6,17 @@ using System;
 
 namespace CursoOnline.Dominio.Matriculas
 {
-    public class Matricula
+    public class MatriculaDomain : Entidade
     {
         public Aluno Aluno { get; private set; }
         public Curso Curso { get; private set; }
         public decimal ValorPago { get; private set; }
         public bool PossuiDesconto { get; private set; }
+        public double NotaDoAluno { get; set; }
+        public bool CursoConcluido { get; set; }
+        public int Id { get; set; }
 
-        public Matricula(Aluno aluno, Curso curso, decimal valor)
+        public MatriculaDomain(Aluno aluno, Curso curso, decimal valor)
         {
             ValidadorDeRegra.Novo()
                 .Quando(aluno == null, Resource.AlunoInvalido)
@@ -27,6 +30,14 @@ namespace CursoOnline.Dominio.Matriculas
             Curso = curso;
             ValorPago = valor;
             PossuiDesconto = valor < Convert.ToDecimal(curso.Valor);
+        }
+
+        public void InformarNota(double notaEsperada)
+        {
+            ValidadorDeRegra.Novo()
+               .Quando(notaEsperada < 0 ||notaEsperada > 10, Resource.NotadoAlunoEhInvalida).DispararExcecaoSeExistir();
+            NotaDoAluno = notaEsperada;
+            CursoConcluido = true;
         }
     }
 }
