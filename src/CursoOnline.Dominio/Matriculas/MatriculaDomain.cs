@@ -14,7 +14,6 @@ namespace CursoOnline.Dominio.Matriculas
         public bool PossuiDesconto { get; private set; }
         public double NotaDoAluno { get; set; }
         public bool CursoConcluido { get; set; }
-        public int Id { get; set; }
 
         public MatriculaDomain(Aluno aluno, Curso curso, decimal valor)
         {
