@@ -4,6 +4,7 @@ using CursoOnline.Cursos;
 using CursoOnline.Dominio.Cursos;
 using CursoOnline.Infrastructure.Contextos;
 using CursoOnline.Infrastructure.Repositorios;
+using CursoOnline.Ioc.SwaggerConfiguration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +23,7 @@ namespace CursoOnline.Ioc
             service.AddScoped(typeof(IConversorDePublicoAlvo), typeof(ConversorDePublicoAlvo));
             service.AddScoped<ArmazenadorDeCurso>();
             service.AddScoped<ArmazenadorDeAluno>();
+            service.SwaggerServices();
         }
     }
 }
