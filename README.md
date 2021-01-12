@@ -6,6 +6,6 @@ Projeto de mvc para gerenciar matricula e nota de aluno.
 
 ## Tecnologias
 * xUnit
-* .Net Core 2.2
+* .Net Core 3.1
 * DDD
 * Entity Framework core
