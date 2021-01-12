@@ -14,13 +14,13 @@ namespace CursoOnline.Ioc.SwaggerConfiguration
                 c.SwaggerDoc("v1",
                     new OpenApiInfo
                     {
-                        Title = "v1",
+                        Title = "Curso Online",
                         Version = "v1",
-                        Description = "Curso Online",
+                        Description = "Gerenciamento de curso e matricula de aluno.",
                         Contact = new OpenApiContact
                         {
                             Name = "Carlos Silva",
-                            Url = new Uri("https://github.com/Carlinhao")
+                            Url = new Uri("https://github.com/Carlinhao/curso-aluno")
                         }
                     });
             });
@@ -31,7 +31,7 @@ namespace CursoOnline.Ioc.SwaggerConfiguration
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Curso Online v1");
             });
         }
     }
