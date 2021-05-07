@@ -24,7 +24,7 @@ namespace CursoOnline.DominioTest.Cursos
                 Nome = faker.Random.Words(),
                 CargaHoraria = faker.Random.Double(50, 100),
                 PublicoAlvo = "Estudante",
-                Valor = faker.Random.Double(100, 950)
+                Valor = faker.Random.Decimal(100, 950)
             };
 
             _cursoRepositorioMock = new Mock<ICursoRepositorio>();
