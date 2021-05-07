@@ -8,7 +8,7 @@ namespace CursoOnline.Dominio._Builders
         private double _cargaHoraria = 80;
         private string _nome = "Informática básica";
         private PublicoAlvo _publicoAlvo = PublicoAlvo.Estudante;
-        private double _valorDoCurso = 950;
+        private decimal _valorDoCurso = 950;
         private string _descricao = "Progração .NetCore";
         private int _id;
 
@@ -35,7 +35,7 @@ namespace CursoOnline.Dominio._Builders
             return this;
         }
 
-        public CursoBuilder ComValor(double valorCurso)
+        public CursoBuilder ComValor(decimal valorCurso)
         {
             _valorDoCurso = valorCurso;
             return this;
