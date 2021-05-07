@@ -5,8 +5,8 @@ orbs:
 
 jobs:
   build:
-    executor: win/default     
-  
+    executor: win/default
+
     steps:
       - checkout
       - run:
@@ -14,7 +14,7 @@ jobs:
           command: dotnet build CursoOnline.sln
       - run:
           name: "Running Api Tests"
-          command: dotnet test /test/CursoOnline.DominioTest\ -v n --results-directory:test_coverage --collect:"Code Coverage"
+          command: dotnet test test/CursoOnline.DominioTest\ -v n --results-directory:test_coverage --collect:"Code Coverage"
       - store_artifacts:
           path: C:\Users\circleci\project\test_coverage
       - store_test_results:
