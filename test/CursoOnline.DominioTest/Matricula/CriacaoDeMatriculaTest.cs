@@ -36,7 +36,7 @@ namespace CursoOnline.DominioTest.Matricula
             _aluno = AlunoBuilder.Novo().ComId(23).ComPublicoAlvo(PublicoAlvo.Empreendedor).Build();
             _alunoRepositorio.Setup(x => x.ObterPorId(_aluno.Id)).Returns(_aluno);
 
-            _matriculaDto = new MatriculaDto(_aluno.Id, _curso.Id, Convert.ToDecimal(_curso.Valor));
+            _matriculaDto = new MatriculaDto {AlunoId = _aluno.Id, CursoId = _curso.Id, ValorPago = _curso.Valor };
         }
         
         [Fact(DisplayName = "Exibir mensagem quando curso não existir")]
