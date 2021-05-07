@@ -1,12 +1,21 @@
- version: 2.1
+version: 2.1
 
- orbs:
+orbs:
   win: circleci/windows@2.2.0
 
- jobs:
-   build:
-     executor: win/default     
-    
-     steps:
-       - checkout
-       - run: dotnet build
+jobs:
+  build:
+    executor: win/default
+
+    steps:
+      - checkout
+      - run:
+          name: "Build projects"
+          command: dotnet build CursoOnline.sln
+      - run:
+          name: "Running Api Tests"
+          command: dotnet test test/CursoOnline.DominioTest\ -v n --results-directory:test_coverage --collect:"Code Coverage"
+      - store_artifacts:
+          path: C:\Users\circleci\project\test_coverage
+      - store_test_results:
+          path: C:\Users\circleci\project\test_result

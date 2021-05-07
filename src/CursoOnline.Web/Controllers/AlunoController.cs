@@ -49,7 +49,12 @@ namespace CursoOnline.Web.Controllers
 
             return View("NovoOuEditar", alunoDto);
         }
-        
+
+        public IActionResult Novo()
+        {
+            return View("NovoOuEditar", new AlunoDto());
+        }
+
         [HttpPost]
         public IActionResult Salvar(AlunoDto model)
         {

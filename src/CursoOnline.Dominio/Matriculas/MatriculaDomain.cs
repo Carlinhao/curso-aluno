@@ -14,6 +14,7 @@ namespace CursoOnline.Dominio.Matriculas
         public bool PossuiDesconto { get; private set; }
         public double NotaDoAluno { get; set; }
         public bool CursoConcluido { get; set; }
+        public bool Cancelada { get; set; }
 
         public MatriculaDomain(Aluno aluno, Curso curso, decimal valor)
         {
@@ -37,6 +38,15 @@ namespace CursoOnline.Dominio.Matriculas
                .Quando(notaEsperada < 0 ||notaEsperada > 10, Resource.NotadoAlunoEhInvalida).DispararExcecaoSeExistir();
             NotaDoAluno = notaEsperada;
             CursoConcluido = true;
+        }
+
+        public void Cancelar()
+        {
+            ValidadorDeRegra.Novo()
+                .Quando(CursoConcluido, Resource.MatriculaConcluida)
+                .DispararExcecaoSeExistir();
+
+            Cancelada = true;
         }
     }
 }

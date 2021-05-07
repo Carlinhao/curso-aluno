@@ -13,7 +13,7 @@ namespace CursoOnline.DominioTest.Cursos
         private readonly string _nome;
         private readonly double _cargaHoraria;
         private readonly CursoOnline.Cursos.PublicoAlvo _publicoAlvo;
-        private readonly double _valorDoCurso;
+        private readonly decimal _valorDoCurso;
         private readonly string _descricao;
 
         public CursoTest()
@@ -23,7 +23,7 @@ namespace CursoOnline.DominioTest.Cursos
             _nome = fake.Random.Word();
             _cargaHoraria = fake.Random.Double(50, 100);
             _publicoAlvo = PublicoAlvo.Estudante;
-            _valorDoCurso = fake.Random.Double(150, 1000);
+            _valorDoCurso = fake.Random.Decimal(150, 1000);
             _descricao = fake.Lorem.Paragraph();
         }
                
@@ -77,7 +77,7 @@ namespace CursoOnline.DominioTest.Cursos
         [InlineData(0)]
         [InlineData(-1)]
         [InlineData(0.99)]
-        public void NaoDeveCursoTerValorMenorQueUm(double valorInvalido)
+        public void NaoDeveCursoTerValorMenorQueUm(decimal valorInvalido)
         {
             //Assert
             Assert.Throws<ExcecaoDeDominio>(() => CursoBuilder.Novo()
@@ -137,7 +137,7 @@ namespace CursoOnline.DominioTest.Cursos
         public void DeveAlterarValorCursoTest()
         {
 
-            var valorCurso = 50.5;
+            var valorCurso = 50.5M;
             var curso = CursoBuilder.Novo().Build();
 
             curso.AlterarValor(valorCurso);
@@ -149,7 +149,7 @@ namespace CursoOnline.DominioTest.Cursos
         [InlineData(0)]
         [InlineData(-1)]
         [InlineData(0.99)]
-        public void NaoDeveAlterarComValorInvalidoCursoTest(double valor)
+        public void NaoDeveAlterarComValorInvalidoCursoTest(decimal valor)
         {
 
             var cursoValor = CursoBuilder.Novo().Build();

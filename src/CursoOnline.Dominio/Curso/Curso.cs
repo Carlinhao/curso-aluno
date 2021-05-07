@@ -9,11 +9,11 @@ namespace CursoOnline.Cursos
         public string Descricao { get; private set; }
         public double CargaHoraria { get; private set; }
         public PublicoAlvo PublicoAlvo { get; private set; }
-        public double Valor { get; private set; }
+        public decimal Valor { get; private set; }
 
         private Curso() { }
 
-        public Curso(string nome, double cargaHoraria, PublicoAlvo publicoAlvo, double valor, string descricao)
+        public Curso(string nome, double cargaHoraria, PublicoAlvo publicoAlvo, decimal valor, string descricao)
         {
             ValidadorDeRegra.Novo()
                 .Quando(string.IsNullOrEmpty(nome), Resource.NomeInvalido)
@@ -45,7 +45,7 @@ namespace CursoOnline.Cursos
             CargaHoraria = cargaHoraria;
         }
 
-        public void AlterarValor(double valorCurso)
+        public void AlterarValor(decimal valorCurso)
         {
             ValidadorDeRegra.Novo()
                 .Quando(valorCurso < 1, Resource.ValorCursoInvalido)

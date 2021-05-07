@@ -19,5 +19,6 @@
         public static string AlunoNaoEncontrado = "O aluno não foi encontrado.";
         public static string NotadoAlunoEhInvalida = "A nota informada para o aluno é inválida";
         public static string MatriculaNaoEncontrada = "Matricula não encontrada";
+        public static string MatriculaConcluida = "Matricula Concluída";
     }
 }
