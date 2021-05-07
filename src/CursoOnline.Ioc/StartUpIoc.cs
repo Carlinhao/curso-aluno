@@ -2,6 +2,7 @@
 using CurosOnline.Dominio.Alunos;
 using CursoOnline.Cursos;
 using CursoOnline.Dominio.Cursos;
+using CursoOnline.Dominio.Matriculas;
 using CursoOnline.Infrastructure.Contextos;
 using CursoOnline.Infrastructure.Repositorios;
 using CursoOnline.Ioc.SwaggerConfiguration;
@@ -19,10 +20,12 @@ namespace CursoOnline.Ioc
             service.AddScoped(typeof(IRepositorio<>), typeof(RepositorioBase<>));
             service.AddScoped(typeof(ICursoRepositorio), typeof(CursoRepositorio));
             service.AddScoped(typeof(IAlunoRepositorio), typeof(AlunoRepositorio));
+            service.AddScoped(typeof(IMatriculaRepositorio), typeof(MatriculaRepositorio));
             service.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork));
             service.AddScoped(typeof(IConversorDePublicoAlvo), typeof(ConversorDePublicoAlvo));
             service.AddScoped<ArmazenadorDeCurso>();
             service.AddScoped<ArmazenadorDeAluno>();
+            service.AddScoped<CriacaoDaMatricula>();
             service.SwaggerServices();
         }
     }
