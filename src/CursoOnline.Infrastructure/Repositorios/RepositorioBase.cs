@@ -19,13 +19,13 @@ namespace CursoOnline.Infrastructure.Repositorios
             Context.Set<TEntidade>().Add(entidade);
         }
 
-        public List<TEntidade> Consultar()
+        public virtual List<TEntidade> Consultar()
         {
             var entidades = Context.Set<TEntidade>().ToList();
             return entidades.Any() ? entidades : new List<TEntidade>();
         }
 
-        public TEntidade ObterPorId(int id)
+        public virtual TEntidade ObterPorId(int id)
         {
             var query = Context.Set<TEntidade>().Where(x => x.Id == id);
             return query.Any() ? query.FirstOrDefault() : null;

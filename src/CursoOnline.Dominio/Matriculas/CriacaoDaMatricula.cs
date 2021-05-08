@@ -33,7 +33,7 @@ namespace CursoOnline.Dominio.Matriculas
                 .DispararExcecaoSeExistir();
 
             var matricula = new CursoOnline.Dominio.Matriculas
-                .MatriculaDomain(aluno, curso, Convert.ToDecimal(matriculaDto.ValorPago));
+                .Matricula(aluno, curso, Convert.ToDecimal(matriculaDto.ValorPago));
 
             _matriculaRepositorio.Adicionar(matricula);
         }

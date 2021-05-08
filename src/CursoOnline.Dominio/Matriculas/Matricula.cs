@@ -6,7 +6,7 @@ using System;
 
 namespace CursoOnline.Dominio.Matriculas
 {
-    public class MatriculaDomain : Entidade
+    public class Matricula : Entidade
     {
         public Aluno Aluno { get; private set; }
         public Curso Curso { get; private set; }
@@ -16,7 +16,9 @@ namespace CursoOnline.Dominio.Matriculas
         public bool CursoConcluido { get; set; }
         public bool Cancelada { get; set; }
 
-        public MatriculaDomain(Aluno aluno, Curso curso, decimal valor)
+        public Matricula() { }
+
+        public Matricula(Aluno aluno, Curso curso, decimal valor)
         {
             ValidadorDeRegra.Novo()
                 .Quando(aluno == null, Resource.AlunoInvalido)

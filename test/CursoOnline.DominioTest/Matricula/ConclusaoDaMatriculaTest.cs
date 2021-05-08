@@ -39,7 +39,7 @@ namespace CursoOnline.DominioTest.Matricula
         public void DeveExibirMensagemQuandoMatriculaNaoForEncontrada()
         {
             // Arrange
-            MatriculaDomain matriculaInvalida = null;
+            Dominio.Matriculas.Matricula matriculaInvalida = null;
             const int idMatriculaInvalida = 1;
             const double notaAluno = 0.1;
 

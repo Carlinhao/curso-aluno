@@ -48,9 +48,9 @@ namespace CursoOnline.Dominio._Builders
             return this;
         }
 
-        public MatriculaDomain Build()
+        public Matricula Build()
         {
-            return new MatriculaDomain(Aluno, Curso, ValorPago);
+            return new Matricula(Aluno, Curso, ValorPago);
         }
     }
 }

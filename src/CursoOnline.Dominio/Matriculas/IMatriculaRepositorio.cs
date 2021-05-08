@@ -3,7 +3,7 @@ using CurosOnline.Dominio.Matriculas;
 
 namespace CursoOnline.Dominio.Matriculas
 {
-    public interface IMatriculaRepositorio : IRepositorio<MatriculaDomain>
+    public interface IMatriculaRepositorio : IRepositorio<Matricula>
     {
 
     }

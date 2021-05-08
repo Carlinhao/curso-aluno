@@ -26,7 +26,7 @@ namespace CursoOnline.DominioTest.Matricula
             };
 
             // Act
-            var matricula = new CursoOnline.Dominio.Matriculas.MatriculaDomain(matriculaEsperada.Aluno, matriculaEsperada.Curso, matriculaEsperada.ValorPago);
+            var matricula = new CursoOnline.Dominio.Matriculas.Matricula(matriculaEsperada.Aluno, matriculaEsperada.Curso, matriculaEsperada.ValorPago);
 
             // Assert
             matriculaEsperada.ToExpectedObject().ShouldMatch(matricula);
