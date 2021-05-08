@@ -76,7 +76,7 @@ namespace CursoOnline.DominioTest.Matricula
             // Arrange
             _criacaoDaMatricula.Criar(_matriculaDto);
 
-            _matriculaRepositorio.Verify(x => x.Adicionar(It.Is<MatriculaDomain>(m => m.Aluno == _aluno && m.Curso == _curso)));
+            _matriculaRepositorio.Verify(x => x.Adicionar(It.Is<Dominio.Matriculas.Matricula>(m => m.Aluno == _aluno && m.Curso == _curso)));
         }
     }
 }
