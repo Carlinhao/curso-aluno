@@ -16,6 +16,8 @@ namespace CursoOnline.Dominio.Matriculas
         public bool CursoConcluido { get; set; }
         public bool Cancelada { get; set; }
 
+        public Matricula() { }
+
         public Matricula(Aluno aluno, Curso curso, decimal valor)
         {
             ValidadorDeRegra.Novo()
