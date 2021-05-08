@@ -1,5 +1,6 @@
 ﻿using CurosOnline.Dominio.Alunos;
 using CursoOnline.Cursos;
+using CursoOnline.Dominio.Matriculas;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
@@ -9,7 +10,8 @@ namespace CursoOnline.Infrastructure.Contextos
     {
         public DbSet<Curso> Cursos { get; set; }
         public DbSet<Aluno> Alunos { get; set; }
-        
+        public DbSet<Matricula> Matriculas { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             :base(options)
         {
