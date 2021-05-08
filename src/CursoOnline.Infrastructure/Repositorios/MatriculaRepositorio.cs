@@ -1,25 +1,17 @@
 ﻿using CursoOnline.Dominio.Matriculas;
+using CursoOnline.Infrastructure.Contextos;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CursoOnline.Infrastructure.Repositorios
 {
-    public class MatriculaRepositorio : IMatriculaRepositorio
+    public class MatriculaRepositorio : RepositorioBase<Matricula>, IMatriculaRepositorio
     {
-        public void Adicionar(MatriculaDomain entidade)
+        public MatriculaRepositorio(ApplicationDbContext context)
+            : base(context)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<MatriculaDomain> Consultar()
-        {
-            throw new NotImplementedException();
-        }
-
-        public MatriculaDomain ObterPorId(int id)
-        {
-            throw new NotImplementedException();
         }
     }
 }
