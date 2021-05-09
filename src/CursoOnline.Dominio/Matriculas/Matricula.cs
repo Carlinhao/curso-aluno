@@ -24,14 +24,14 @@ namespace CursoOnline.Dominio.Matriculas
                 .Quando(aluno == null, Resource.AlunoInvalido)
                 .Quando(curso == null, Resource.CursoInvalido)
                 .Quando(valor < 1, Resource.ValorPagoInvalido)
-                .Quando(curso != null && valor > Convert.ToDecimal(curso.Valor), Resource.ValorPagoMaiorQueValorDoCurso)
+                .Quando(curso != null && valor > curso.Valor, Resource.ValorPagoMaiorQueValorDoCurso)
                 .Quando(curso != null && aluno != null && aluno.PublicoAlvo != curso.PublicoAlvo, Resource.PublicoAlvoDiferente)
                 .DispararExcecaoSeExistir();
 
             Aluno = aluno;
             Curso = curso;
             ValorPago = valor;
-            PossuiDesconto = valor < Convert.ToDecimal(curso.Valor);
+            PossuiDesconto = valor < curso.Valor;
         }
 
         public void InformarNota(double notaEsperada)
